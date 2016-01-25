@@ -54,29 +54,5 @@ public class CalculParser {
         }
         return operandeA;
     }
-//        for (int index = textCalcul.startsWith("-") ? 1 : 0; index < textCalcul.toCharArray().length; index++) {
-//            Optional<Operateur> fromSign = Operateur.getFromSign(String.valueOf(textCalcul.charAt(index)));
-//            if (fromSign.isPresent()) {
-//                return createCalcul(fromSign.get(), textCalcul.substring(0, index), textCalcul.substring(index + 1));
-//            }
-//        }
-//        throw new IllegalArgumentException("sign not found in " + textCalcul);
-    //}
-
-//    private Calcul createCalcul(final Operateur operateur, final String a,String b) {
-//        Operande operandeA=null;
-//        Operande operandeB;
-//
-//        if(numberRegexp.matcher(a).find()){
-//            operandeA = new Operande(Integer.parseInt(a));
-//        }
-//        if(numberRegexp.matcher(b).find()){
-//            operandeB = new Operande(Integer.parseInt(b));
-//        }else{
-//            operandeB = parseUnit(b);
-//        }
-//        return new Calcul(operateur, operandeA,operandeB);
-//    }
-
 
 }

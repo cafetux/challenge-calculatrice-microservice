@@ -37,7 +37,7 @@ public class CalculatorBot extends IrcBot implements EventBus{
 
     @Override
     public void send(String id, EventType calcul, String content) {
-        say(eventChannel,String.format("[%s]%s}",calcul,content));
+        say(eventChannel,String.format("[%s]%s",calcul,content));
 
     }
 
