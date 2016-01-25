@@ -19,9 +19,8 @@ public class Calculator {
     }
 
 
-    public String calcul(String calculExpression){
+    public void calcul(String calculExpression){
         parser.parse(calculExpression).forEach(this::sendCalculMessage);
-        return "haha";
     }
 
     private void sendCalculMessage(Calcul calcul) {
