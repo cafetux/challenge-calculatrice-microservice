@@ -1,0 +1,5 @@
+{
+  "name": "calculatrice",
+  "description": "a java app for calculator microservices",
+  "image": "heroku/java"
+}
