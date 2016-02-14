@@ -9,9 +9,9 @@ public abstract class Operande<T> implements Serializable {
         this.id = id;
     }
 
-    public String getId() {
+    public String identifier() {
         return id;
     }
 
-    public abstract T getValue();
+    public abstract T valeur();
 }

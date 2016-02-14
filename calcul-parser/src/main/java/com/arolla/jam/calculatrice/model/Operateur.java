@@ -12,7 +12,7 @@ public enum Operateur {
         this.sign=sign;
     }
 
-    public String getSign() {
+    public String signe() {
         return sign;
     }
 

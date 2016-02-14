@@ -52,7 +52,7 @@ public class Calcul implements Serializable {
 
     @Override
     public String toString() {
-        return getId()+":["+a +" "+ operateur.getSign()+" " + b+"]";
+        return getId()+":["+a +" "+ operateur.signe()+" " + b+"]";
     }
 
     @Override
@@ -70,8 +70,8 @@ public class Calcul implements Serializable {
     @Override
     public int hashCode() {
         int result = operateur != null ? operateur.hashCode() : 0;
-        result = 31 * result + a.getId().hashCode();
-        result = 31 * result + b.getId().hashCode();
+        result = 31 * result + a.identifier().hashCode();
+        result = 31 * result + b.identifier().hashCode();
         return result;
     }
 

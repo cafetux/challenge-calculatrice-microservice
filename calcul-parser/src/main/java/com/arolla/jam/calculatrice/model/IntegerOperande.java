@@ -13,7 +13,7 @@ public class IntegerOperande extends Operande<Integer>{
     }
 
     @Override
-    public Integer getValue() {
+    public Integer valeur() {
         return value;
     }
 

@@ -22,7 +22,7 @@ public class CalculParser {
 
         List<Calcul> calculs = new ArrayList<>();
         for (Operateur operateur : Operateur.values()) {
-            int index = lexique.indexOf(operateur.getSign());
+            int index = lexique.indexOf(operateur.signe());
             while (index != -1) {
                 lexique.remove(index);
                 String operandeValueB = lexique.remove(index);
@@ -35,7 +35,7 @@ public class CalculParser {
                 if (!lexique.isEmpty()) {
                     lexique.add(lexique.size() >= index ? index-1 : lexique.size(), calcul.getId());
                 }
-                index = lexique.indexOf(operateur.getSign());
+                index = lexique.indexOf(operateur.signe());
             }
 
         }

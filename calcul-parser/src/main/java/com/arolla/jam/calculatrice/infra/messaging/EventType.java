@@ -13,7 +13,7 @@ public enum EventType {
         CALCUL {
             @Override
             public String toMessage(Calcul calcul) {
-                return String.format("[%s][%s %s %s]",calcul.getId(), calcul.getA().getValue(),calcul.getOperateur().getSign(), calcul.getB().getValue());
+                return String.format("[%s][%s %s %s]",calcul.getId(), calcul.getA().valeur(),calcul.getOperateur().signe(), calcul.getB().valeur());
             }
 
         };

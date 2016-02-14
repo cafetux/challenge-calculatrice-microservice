@@ -10,12 +10,12 @@ public class FutureOperande extends Operande<String>{
     }
 
     @Override
-    public String getValue() {
-        return getId();
+    public String valeur() {
+        return identifier();
     }
 
     @Override
     public String toString() {
-        return getId();
+        return identifier();
     }
 }

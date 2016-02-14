@@ -25,8 +25,8 @@ public class CalculStringParserTest {
 		List<Calcul> calculs=parser.parse(calculText);
         assertThat(calculs).hasSize(1);
 		assertThat(calculs.get(0).getOperateur()).isEqualTo(ADDITION);
-		assertThat(calculs.get(0).getA().getValue()).isEqualTo(3);
-		assertThat(calculs.get(0).getB().getValue()).isEqualTo(5);
+		assertThat(calculs.get(0).getA().valeur()).isEqualTo(3);
+		assertThat(calculs.get(0).getB().valeur()).isEqualTo(5);
 
 	}
 
@@ -35,8 +35,8 @@ public class CalculStringParserTest {
 		List<Calcul> calculs=parser.parse("4-2");
         assertThat(calculs).hasSize(1);
 		assertThat(calculs.get(0).getOperateur()).isEqualTo(SOUSTRACTION);
-		assertThat(calculs.get(0).getA().getValue()).isEqualTo(4);
-		assertThat(calculs.get(0).getB().getValue()).isEqualTo(2);
+		assertThat(calculs.get(0).getA().valeur()).isEqualTo(4);
+		assertThat(calculs.get(0).getB().valeur()).isEqualTo(2);
 
 	}
 
@@ -46,8 +46,8 @@ public class CalculStringParserTest {
 		List<Calcul> calculs = parser.parse("6*12");
         assertThat(calculs).hasSize(1);
 		assertThat(calculs.get(0).getOperateur()).isEqualTo(MULTIPLICATION);
-		assertThat(calculs.get(0).getA().getValue()).isEqualTo(6);
-		assertThat(calculs.get(0).getB().getValue()).isEqualTo(12);
+		assertThat(calculs.get(0).getA().valeur()).isEqualTo(6);
+		assertThat(calculs.get(0).getB().valeur()).isEqualTo(12);
 	}
 
 	@Test
@@ -55,8 +55,8 @@ public class CalculStringParserTest {
 
 		List<Calcul> calcul1 = parser.parse("6*-12");
 		assertThat(calcul1.get(0).getOperateur()).isEqualTo(MULTIPLICATION);
-		assertThat(calcul1.get(0).getA().getValue()).isEqualTo(6);
-		assertThat(calcul1.get(0).getB().getValue()).isEqualTo(-12);
+		assertThat(calcul1.get(0).getA().valeur()).isEqualTo(6);
+		assertThat(calcul1.get(0).getB().valeur()).isEqualTo(-12);
 	}
 
 	@Test
@@ -64,8 +64,8 @@ public class CalculStringParserTest {
 
 		List<Calcul> calcul1 = parser.parse("-6*-12");
 		assertThat(calcul1.get(0).getOperateur()).isEqualTo(MULTIPLICATION);
-		assertThat(calcul1.get(0).getA().getValue()).isEqualTo(-6);
-		assertThat(calcul1.get(0).getB().getValue()).isEqualTo(-12);
+		assertThat(calcul1.get(0).getA().valeur()).isEqualTo(-6);
+		assertThat(calcul1.get(0).getB().valeur()).isEqualTo(-12);
 	}
 
 	@Test
@@ -73,8 +73,8 @@ public class CalculStringParserTest {
 
 		List<Calcul> calcul1 = parser.parse("-6*12");
 		assertThat(calcul1.get(0).getOperateur()).isEqualTo(MULTIPLICATION);
-		assertThat(calcul1.get(0).getA().getValue()).isEqualTo(-6);
-		assertThat(calcul1.get(0).getB().getValue()).isEqualTo(12);
+		assertThat(calcul1.get(0).getA().valeur()).isEqualTo(-6);
+		assertThat(calcul1.get(0).getB().valeur()).isEqualTo(12);
 	}
 
     @Test(expected = IllegalArgumentException.class)
@@ -96,8 +96,8 @@ public class CalculStringParserTest {
 
 		List<Calcul> calcul1 = parser.parse("-6-12");
 		assertThat(calcul1.get(0).getOperateur()).isEqualTo(SOUSTRACTION);
-		assertThat(calcul1.get(0).getA().getValue()).isEqualTo(-6);
-		assertThat(calcul1.get(0).getB().getValue()).isEqualTo(12);
+		assertThat(calcul1.get(0).getA().valeur()).isEqualTo(-6);
+		assertThat(calcul1.get(0).getB().valeur()).isEqualTo(12);
 	}
 
 	private static IntegerOperande operande(final int value) {
@@ -114,7 +114,7 @@ public class CalculStringParserTest {
 
         Calcul calculLazy = calcul.get(1);
         assertThat(calculLazy.getOperateur()).isEqualTo(SOUSTRACTION);
-        assertThat(calculLazy.getA().getId()).matches(IS_UUID);
+        assertThat(calculLazy.getA().identifier()).matches(IS_UUID);
         assertThat(calculLazy.getB()).isEqualTo(operande(2));
     }
 
@@ -129,7 +129,7 @@ public class CalculStringParserTest {
         Calcul calculLazy = calcul.get(1);
         assertThat(calculLazy.getOperateur()).isEqualTo(ADDITION);
         assertThat(calculLazy.getA()).isEqualTo(operande(3));
-        assertThat(calculLazy.getB().getId()).matches(IS_UUID);
+        assertThat(calculLazy.getB().identifier()).matches(IS_UUID);
     }
 
     @Test
@@ -143,11 +143,11 @@ public class CalculStringParserTest {
         Calcul calculLazy = calcul.get(1);
         assertThat(calculLazy.getOperateur()).isEqualTo(ADDITION);
         assertThat(calculLazy.getA()).isEqualTo(operande(3));
-        assertThat(calculLazy.getB().getId()).matches(IS_UUID);
+        assertThat(calculLazy.getB().identifier()).matches(IS_UUID);
 
         Calcul calculLazy2 = calcul.get(2);
         assertThat(calculLazy2.getOperateur()).isEqualTo(SOUSTRACTION);
-        assertThat(calculLazy2.getA().getId()).matches(IS_UUID);
+        assertThat(calculLazy2.getA().identifier()).matches(IS_UUID);
         assertThat(calculLazy2.getB()).isEqualTo(operande(5));
     }
     @Test
@@ -160,13 +160,13 @@ public class CalculStringParserTest {
 
         Calcul calculLazy = calcul.get(1);
         assertThat(calculLazy.getOperateur()).isEqualTo(ADDITION);
-        assertThat(calculLazy.getA().getId()).matches(IS_UUID);
+        assertThat(calculLazy.getA().identifier()).matches(IS_UUID);
         assertThat(calculLazy.getB()).isEqualTo(operande(5));
 
         Calcul calculLazy2 = calcul.get(2);
         assertThat(calculLazy2.getOperateur()).isEqualTo(SOUSTRACTION);
         assertThat(calculLazy2.getA()).isEqualTo(operande(3));
-        assertThat(calculLazy2.getB().getId()).matches(IS_UUID);
+        assertThat(calculLazy2.getB().identifier()).matches(IS_UUID);
     }
 
     @Test
@@ -187,7 +187,7 @@ public class CalculStringParserTest {
         Calcul calculLazy = calcul.get(1);
         assertThat(calculLazy.getOperateur()).isEqualTo(ADDITION);
         assertThat(calculLazy.getA()).isEqualTo(operande(3));
-        assertThat(calculLazy.getB().getId()).matches(IS_UUID);
+        assertThat(calculLazy.getB().identifier()).matches(IS_UUID);
     }
 
 	@Test
