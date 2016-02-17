@@ -22,6 +22,7 @@ public class CalculatorHandler implements EventHandler{
     @Override
     public boolean accept(Message message) {
         boolean accept = CALCUL_PATTERN.matcher(message.getContent()).find();
+
         if (accept) {
             System.out.println("CalculatorHandler.accept: "+message);
         } else {

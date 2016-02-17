@@ -3,6 +3,7 @@ package com.arolla.jam.calculatrice.infra.irc;
 import com.arolla.jam.calculatrice.infra.messaging.EventBus;
 import com.arolla.jam.calculatrice.infra.messaging.EventHandler;
 import com.arolla.jam.calculatrice.infra.messaging.EventType;
+import com.arolla.jam.calculatrice.infra.messaging.UserInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +11,16 @@ import java.util.List;
 /**
  * Created by cafetux on 22/01/2016.
  */
-public class CalculatorBot extends IrcBot implements EventBus{
+public class CalculatorBot extends IrcBot implements EventBus,UserInterface{
 
     private final String eventChannel;
+    private final String userChannel;
     private List<EventHandler> handlers = new ArrayList<>();
 
-    public CalculatorBot(String host, String channel, String name) {
+    public CalculatorBot(String host, String eventChannel, String userChannel, String name) {
         super(host, name);
-        this.eventChannel=channel;
+        this.eventChannel=eventChannel;
+        this.userChannel=userChannel;
     }
 
     @Override
@@ -44,5 +47,10 @@ public class CalculatorBot extends IrcBot implements EventBus{
     @Override
     public void addEventHandler(EventHandler handler) {
         this.handlers.add(handler);
+    }
+
+    @Override
+    public void say(String content) {
+        say(userChannel,content);
     }
 }

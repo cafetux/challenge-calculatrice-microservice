@@ -24,11 +24,9 @@ public class CalculParser {
         for (Operateur operateur : Operateur.values()) {
             int index = lexique.indexOf(operateur.signe());
             while (index != -1) {
-                lexique.remove(index);
-                String operandeValueB = lexique.remove(index);
-                String operandeValueA = lexique.remove(index - 1);
-                Operande operandeA = getOperande(operandeValueA);
-                Operande operandeB = getOperande(operandeValueB);
+                removeSign(lexique, index);
+                Operande operandeB = getAndRemoveOperande(lexique, index);
+                Operande operandeA = getAndRemoveOperande(lexique, index - 1);
 
                 Calcul calcul = new Calcul(operateur, operandeA, operandeB);
                 calculs.add(calcul);
@@ -43,6 +41,15 @@ public class CalculParser {
             throw new IllegalArgumentException("invalid input "+ Arrays.toString(lexique.toArray()));
         }
         return calculs;
+    }
+
+    private Operande getAndRemoveOperande(List<String> lexique, int index) {
+        String operandeValue = lexique.remove(index);
+        return getOperande(operandeValue);
+    }
+
+    private void removeSign(List<String> lexique, int index) {
+        lexique.remove(index);
     }
 
     private Operande getOperande(String operandeValueA) {
