@@ -4,6 +4,7 @@ import com.arolla.jam.calculatrice.infra.messaging.impl.CalculatorHandler;
 import com.arolla.jam.calculatrice.infra.messaging.impl.ResultatHandler;
 import com.arolla.jam.calculatrice.infra.slack.JamBot;
 import com.arolla.jam.calculatrice.infra.slack.Token;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.io.IOException;
 /**
  * Created by raphael on 26/02/2016.
  */
+@Ignore
 public class JamBotInitializer {
     @Test
     public void initASlackCalculator() throws IOException, InterruptedException {
