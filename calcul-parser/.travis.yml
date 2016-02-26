@@ -1,0 +1,8 @@
+language: java
+jdk:
+  - oraclejdk8
+
+notifications:
+  slack:
+    rooms:
+      - jamrolla:lLJZa7jXyYFA8kOrydEeJjy7#build
