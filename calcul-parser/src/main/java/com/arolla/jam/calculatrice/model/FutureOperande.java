@@ -1,12 +1,14 @@
 package com.arolla.jam.calculatrice.model;
 
+import java.util.UUID;
+
 /**
  * Created by cafetux on 25/01/2016.
  */
-public class FutureOperande extends Operande<String>{
+public class FutureOperande extends Operande<String> {
 
     public FutureOperande(String identifier) {
-        super(identifier);
+        super(identifier.toString());
     }
 
     @Override

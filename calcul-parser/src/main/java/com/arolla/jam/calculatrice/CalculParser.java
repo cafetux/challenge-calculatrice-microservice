@@ -31,14 +31,14 @@ public class CalculParser {
                 Calcul calcul = new Calcul(operateur, operandeA, operandeB);
                 calculs.add(calcul);
                 if (!lexique.isEmpty()) {
-                    lexique.add(lexique.size() >= index ? index-1 : lexique.size(), calcul.getId());
+                    lexique.add(lexique.size() >= index ? index - 1 : lexique.size(), calcul.getId());
                 }
                 index = lexique.indexOf(operateur.signe());
             }
 
         }
-        if(!lexique.isEmpty()){
-            throw new IllegalArgumentException("invalid input "+ Arrays.toString(lexique.toArray()));
+        if (!lexique.isEmpty()) {
+            throw new IllegalArgumentException("invalid input " + Arrays.toString(lexique.toArray()));
         }
         return calculs;
     }
@@ -54,9 +54,9 @@ public class CalculParser {
 
     private Operande getOperande(String operandeValueA) {
         Operande operandeA;
-        if(numberRegexp.matcher(operandeValueA).find()){
-            operandeA=new IntegerOperande(Integer.parseInt(operandeValueA));
-        }else{
+        if (numberRegexp.matcher(operandeValueA).find()) {
+            operandeA = new IntegerOperande(Integer.parseInt(operandeValueA));
+        } else {
             operandeA = new FutureOperande(operandeValueA);
         }
         return operandeA;
