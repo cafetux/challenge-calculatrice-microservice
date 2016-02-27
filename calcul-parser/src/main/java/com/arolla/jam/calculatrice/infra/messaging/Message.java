@@ -1,4 +1,4 @@
-package com.arolla.jam.calculatrice.infra.irc;
+package com.arolla.jam.calculatrice.infra.messaging;
 
 public class Message {
 

@@ -1,5 +1,6 @@
 package com.arolla.jam.calculatrice.infra.irc;
 
+import com.arolla.jam.calculatrice.infra.messaging.Message;
 import org.jibble.pircbot.PircBot;
 
 import java.util.stream.Stream;

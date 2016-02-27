@@ -1,10 +1,6 @@
 package com.arolla.jam.calculatrice.infra.slack;
 
-import com.arolla.jam.calculatrice.infra.irc.Message;
-import com.arolla.jam.calculatrice.infra.messaging.EventBus;
-import com.arolla.jam.calculatrice.infra.messaging.EventHandler;
-import com.arolla.jam.calculatrice.infra.messaging.EventType;
-import com.arolla.jam.calculatrice.infra.messaging.UserInterface;
+import com.arolla.jam.calculatrice.infra.messaging.*;
 import com.ullink.slack.simpleslackapi.SlackChannel;
 import com.ullink.slack.simpleslackapi.SlackSession;
 import com.ullink.slack.simpleslackapi.events.SlackMessagePosted;

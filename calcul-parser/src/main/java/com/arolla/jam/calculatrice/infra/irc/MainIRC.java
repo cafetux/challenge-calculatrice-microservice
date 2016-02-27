@@ -1,15 +1,14 @@
-package com.arolla.jam.calculatrice.infra;
+package com.arolla.jam.calculatrice.infra.irc;
 
 import com.arolla.jam.calculatrice.CalculParser;
 import com.arolla.jam.calculatrice.Calculator;
-import com.arolla.jam.calculatrice.infra.irc.CalculatorBot;
 import com.arolla.jam.calculatrice.infra.messaging.impl.CalculatorHandler;
 import com.arolla.jam.calculatrice.infra.messaging.impl.ResultatHandler;
 
 /**
  * Created by cafetux on 22/01/2016.
  */
-public class Main {
+public class MainIRC {
 
     public static final String HOST = "irc.freenode.net";
     public static final String INPUT_CHANNEL = "#jam_input";

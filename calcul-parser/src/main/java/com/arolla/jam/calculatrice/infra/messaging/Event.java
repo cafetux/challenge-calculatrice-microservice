@@ -1,7 +1,4 @@
-package com.arolla.jam.calculatrice.infra;
-
-import com.arolla.jam.calculatrice.infra.irc.Message;
-import com.arolla.jam.calculatrice.infra.messaging.EventType;
+package com.arolla.jam.calculatrice.infra.messaging;
 
 import java.io.Serializable;
 
@@ -9,8 +6,6 @@ import java.io.Serializable;
  * Created by cafetux on 23/01/2016.
  */
 public class Event extends Message implements Serializable {
-
-
 
     private final EventType type;
     private String id;
