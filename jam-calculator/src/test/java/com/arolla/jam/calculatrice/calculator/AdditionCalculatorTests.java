@@ -54,4 +54,27 @@ public class AdditionCalculatorTests {
     public void calculate_4_plus_4_returns_8() throws Exception {
         assertThat(calculator.calculate("[CALCUL][ADDITION][mailol][4;4]")).isEqualTo("[RESULTAT][mailol][8]");
     }
+
+    @Test
+    public void shoud_wait_for_result_if_calcul_between_uuid_and_operand() throws Exception {
+        assertThat(calculator.calculate("[CALCUL][ADDITION][shouldwait][uuidTOwait;1]")).isEqualTo("");
+        assertThat(calculator.getWaitingResult()).containsKey("uuidTOwait");
+        assertThat(calculator.calculate("[RESULTAT][uuidTOwait][41]")).isEqualTo("[RESULTAT][shouldwait][42]");
+    }
+
+    @Test
+    public void shoud_wait_for_result_if_calcul_between_and_operand_uuid() throws Exception {
+        assertThat(calculator.calculate("[CALCUL][ADDITION][shouldwait][1;uuidTOwait]")).isEqualTo("");
+        assertThat(calculator.getWaitingResult()).containsKey("uuidTOwait");
+        assertThat(calculator.calculate("[RESULTAT][uuidTOwait][41]")).isEqualTo("[RESULTAT][shouldwait][42]");
+    }
+
+    @Test
+    public void shoud_also_wait_for_result_if_calcul_between_uuid_and_uuid() throws Exception {
+        assertThat(calculator.calculate("[CALCUL][ADDITION][shouldwait][uuidTOwait;another1]")).isEqualTo("");
+        assertThat(calculator.getWaitingResult()).containsKey("uuidTOwait");
+        assertThat(calculator.calculate("[RESULTAT][uuidTOwait][50]")).isEqualTo("");
+        assertThat(calculator.calculate("[RESULTAT][another1][-8]")).isEqualTo("[RESULTAT][shouldwait][42]");
+    }
+
 }

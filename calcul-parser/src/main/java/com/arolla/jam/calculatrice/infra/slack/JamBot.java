@@ -67,7 +67,7 @@ public abstract class JamBot implements EventBus, UserInterface {
         session.connect();
 
         while (true) {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         }
     }
 
