@@ -58,23 +58,29 @@ public class AdditionCalculatorTests {
     @Test
     public void shoud_wait_for_result_if_calcul_between_uuid_and_operand() throws Exception {
         assertThat(calculator.calculate("[CALCUL][ADDITION][shouldwait][uuidTOwait;1]")).isEqualTo("");
-        assertThat(calculator.getWaitingResult()).containsKey("uuidTOwait");
+        assertThat(calculator.getResultsCache()).containsKey("uuidTOwait");
         assertThat(calculator.calculate("[RESULTAT][uuidTOwait][41]")).isEqualTo("[RESULTAT][shouldwait][42]");
     }
 
     @Test
     public void shoud_wait_for_result_if_calcul_between_and_operand_uuid() throws Exception {
         assertThat(calculator.calculate("[CALCUL][ADDITION][shouldwait][1;uuidTOwait]")).isEqualTo("");
-        assertThat(calculator.getWaitingResult()).containsKey("uuidTOwait");
+        assertThat(calculator.getResultsCache()).containsKey("uuidTOwait");
         assertThat(calculator.calculate("[RESULTAT][uuidTOwait][41]")).isEqualTo("[RESULTAT][shouldwait][42]");
     }
 
     @Test
     public void shoud_also_wait_for_result_if_calcul_between_uuid_and_uuid() throws Exception {
         assertThat(calculator.calculate("[CALCUL][ADDITION][shouldwait][uuidTOwait;another1]")).isEqualTo("");
-        assertThat(calculator.getWaitingResult()).containsKey("uuidTOwait");
+        assertThat(calculator.getResultsCache()).containsKey("uuidTOwait");
         assertThat(calculator.calculate("[RESULTAT][uuidTOwait][50]")).isEqualTo("");
         assertThat(calculator.calculate("[RESULTAT][another1][-8]")).isEqualTo("[RESULTAT][shouldwait][42]");
+    }
+
+    @Test
+    public void calculation_received_after_result() throws Exception {
+        assertThat(calculator.calculate("[CALCUL][ADDITION][32c8928739e04a0a95d9af342b8256eb][1;1]")).isEqualTo("[RESULTAT][32c8928739e04a0a95d9af342b8256eb][2]");
+        assertThat(calculator.calculate("[CALCUL][ADDITION][3e59557f005a48e3bcafe51d8e6882de][32c8928739e04a0a95d9af342b8256eb;1]")).isEqualTo("[RESULTAT][3e59557f005a48e3bcafe51d8e6882de][3]");
     }
 
 }

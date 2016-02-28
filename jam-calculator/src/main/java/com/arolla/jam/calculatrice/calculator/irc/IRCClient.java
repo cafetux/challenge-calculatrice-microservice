@@ -49,13 +49,13 @@ public class IRCClient {
         String line;
         // Keep reading lines from the server.
         while ((line = reader.readLine()) != null) {
-            if (line.toUpperCase().startsWith("PING ")) {
-                respondToPing(line);
-            } else {
-                parseForCalculation(line);
+//            if (line.toUpperCase().startsWith("PING ")) {
+//                respondToPing(line);
+//            } else {
+            parseForCalculation(line);
 //                Print the raw line received by the bot.
 //                System.out.println(line);
-            }
+//            }
         }
     }
 
@@ -70,7 +70,7 @@ public class IRCClient {
         if (StringUtils.isNotBlank(command)) {
             final String result = calculator.calculate(command);
             if (StringUtils.isNotBlank(result)) {
-                writer.write(result + "\r\n");
+                writer.write("PRIVMSG " + channel + " :" + result + "\r\n");
                 writer.flush();
             }
         }

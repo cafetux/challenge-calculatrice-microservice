@@ -23,80 +23,85 @@ public class Calculator {
     public static final String RESULTAT = "[RESULTAT]";
 
     private final Calcul calcul;
-    private Map<String, UUIDOperandTuple> waitingResult;
+    private Map<String, UUIDOperandTuple> resultsCache;
 
     public Calculator(Calcul calcul) {
-        waitingResult = new HashMap<>();
+        resultsCache = new HashMap<>();
         this.calcul = calcul;
     }
 
     public String calculate(String command) {
-        return processWaitingCalculation(command).orElse(processDirectCalcutation(command));
+        return processWaitingCalculation(command).orElse(processDirectCalculation(command));
     }
 
     private Optional<String> processWaitingCalculation(String command) {
         final Matcher matcher = RESULT_PATTERN.matcher(command);
-        if (matcher.find() && matcher.groupCount() == 2 && waitingResult.containsKey(matcher.group(1))) {
+        if (matcher.find() && matcher.groupCount() == 2 && resultsCache.containsKey(matcher.group(1))) {
             final String resultKey = matcher.group(1);
-            final UUIDOperandTuple uuidOperandTuple = waitingResult.get(resultKey);
+            final UUIDOperandTuple uuidOperandTuple = resultsCache.get(resultKey);
             final String result = matcher.group(2);
             if (replaceOperandIfNecessary(resultKey, result)) {
-                LOGGER.info("command valid, processing...");
-                final String calculResult = getCalculResult(uuidOperandTuple.uuid, uuidOperandTuple.operand, result);
-                return Optional.of(calculResult);
+                LOGGER.info("command valid, process Waiting Calculation...");
+                return getCalculResult(uuidOperandTuple.uuid, uuidOperandTuple.operand, result);
             }
         }
         return Optional.empty();
     }
 
     private boolean replaceOperandIfNecessary(String resultKey, String result) {
-        final UUIDOperandTuple uuidOperandTuple = waitingResult.get(resultKey);
+        final UUIDOperandTuple uuidOperandTuple = resultsCache.get(resultKey);
         if (!isNumeric(uuidOperandTuple.operand)) {
             LOGGER.debug("calculation between two results...");
-            waitingResult.put(uuidOperandTuple.operand, new UUIDOperandTuple(uuidOperandTuple.uuid, result));
+            resultsCache.put(uuidOperandTuple.operand, new UUIDOperandTuple(uuidOperandTuple.uuid, result));
             return false;
         }
         return true;
     }
 
-    private String processDirectCalcutation(String command) {
+    private String processDirectCalculation(String command) {
         final Matcher matcher = getCalculMatcher(command);
         if (matcher != null) {
             final String operationGroup = matcher.group(3);
             final String[] operands = operationGroup.split(OPERATION_SEPARATOR);
             if (isValid(operands)) {
-                LOGGER.info("command valid, processing...");
+                LOGGER.info("command valid, process Direct Calculation...");
                 final String commandUUID = matcher.group(2);
                 final String first = operands[0];
                 final String second = operands[1];
-                if (!canCalculate(commandUUID, first, second)) return "";
-                return getCalculResult(commandUUID, first, second);
+                return getCalculResult(commandUUID, first, second).orElse("");
             }
         }
         LOGGER.warn("command ignored : {}", command);
         return "";
     }
 
-    private boolean canCalculate(String commandUUID, String first, String second) {
-        if (!isNumeric(first)) {
-            waitingResult.put(first, new UUIDOperandTuple(commandUUID, second));
-            return false;
+    private Optional<String> getCalculResult(String commandUUID, String first, String second) {
+        Optional<Integer> op1 = extractOperand(commandUUID, first, second);
+        Optional<Integer> op2 = extractOperand(commandUUID, second, first);
+        return op1.map(op -> {
+            if (op2.isPresent()) {
+                final String compute = calcul.compute(op, op2.get());
+                resultsCache.put(commandUUID, new UUIDOperandTuple(commandUUID, compute));
+                return RESULTAT + START_GROUP + commandUUID + END_GROUP + START_GROUP + compute + END_GROUP;
+            }
+            return null;
+        });
+    }
+
+    private Optional<Integer> extractOperand(String commandUUID, String first, String second) {
+        Optional<Integer> op1 = Optional.empty();
+        if (resultsCache.containsKey(first)) {
+            op1 = Optional.of(Integer.parseInt(resultsCache.get(first).operand));
+        } else if (!isNumeric(first)) {
+            resultsCache.put(first, new UUIDOperandTuple(commandUUID, second));
+        } else {
+            op1 = Optional.of(Integer.parseInt(first));
         }
-        if (!isNumeric(second)) {
-            waitingResult.put(second, new UUIDOperandTuple(commandUUID, first));
-            return false;
-        }
-        return true;
+        return op1;
     }
 
     private boolean isNumeric(String operandStr) {
         return operandStr.matches("-?\\d+");
-    }
-
-    private String getCalculResult(String commandUUID, String first, String second) {
-        int op1 = Integer.parseInt(first);
-        int op2 = Integer.parseInt(second);
-        return RESULTAT + START_GROUP + commandUUID + END_GROUP + START_GROUP + calcul.compute(op1, op2) + END_GROUP;
     }
 
     private boolean isValid(String[] operands) {
@@ -112,8 +117,8 @@ public class Calculator {
         }
     }
 
-    public Map<String, UUIDOperandTuple> getWaitingResult() {
-        return waitingResult;
+    public Map<String, UUIDOperandTuple> getResultsCache() {
+        return resultsCache;
     }
 
     private class UUIDOperandTuple {
