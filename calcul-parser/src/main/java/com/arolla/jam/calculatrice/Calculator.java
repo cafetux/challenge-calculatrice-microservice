@@ -1,8 +1,9 @@
 package com.arolla.jam.calculatrice;
 
-import com.arolla.jam.calculatrice.infra.messaging.EventBus;
-import com.arolla.jam.calculatrice.infra.messaging.UserInterface;
-import com.arolla.jam.calculatrice.model.Calcul;
+import com.arolla.jam.calculatrice.model.parsing.CalculParser;
+import com.arolla.jam.calculatrice.spi.EventBus;
+import com.arolla.jam.calculatrice.api.UserInterface;
+import com.arolla.jam.calculatrice.model.operation.Calcul;
 
 import java.util.ArrayList;
 import java.util.List;

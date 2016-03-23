@@ -1,6 +1,6 @@
 package com.arolla.jam.calculatrice.infra.messaging;
 
-import com.arolla.jam.calculatrice.model.Calcul;
+import com.arolla.jam.calculatrice.model.operation.Calcul;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public enum EventType {
@@ -13,7 +13,7 @@ public enum EventType {
         CALCUL {
             @Override
             public String toMessage(Calcul calcul) {
-                return String.format("[%s][%s][%s;%s]",calcul.getOperateur(),calcul.getId(), calcul.getA().valeur(), calcul.getB().valeur());
+                return String.format("|%s|%s|%s;%s|",calcul.getOperateur(),calcul.getId(), calcul.getA().valeur(), calcul.getB().valeur());
             }
 
         };

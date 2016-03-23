@@ -1,6 +1,4 @@
-package com.arolla.jam.calculatrice.model;
-
-import java.util.UUID;
+package com.arolla.jam.calculatrice.model.operation;
 
 /**
  * Created by cafetux on 25/01/2016.

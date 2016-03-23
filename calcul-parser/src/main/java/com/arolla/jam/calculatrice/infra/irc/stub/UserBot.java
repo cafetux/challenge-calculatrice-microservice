@@ -1,7 +1,9 @@
 package com.arolla.jam.calculatrice.infra.irc.stub;
 
+import com.arolla.jam.calculatrice.api.UserInterface;
 import com.arolla.jam.calculatrice.infra.irc.IrcBot;
 import com.arolla.jam.calculatrice.infra.messaging.*;
+import com.arolla.jam.calculatrice.spi.EventHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 /**
  * Created by cafetux on 22/01/2016.
  */
-public class UserBot extends IrcBot implements UserInterface{
+public class UserBot extends IrcBot implements UserInterface {
 
     private final String userChannel;
     private List<EventHandler> handlers = new ArrayList<>();

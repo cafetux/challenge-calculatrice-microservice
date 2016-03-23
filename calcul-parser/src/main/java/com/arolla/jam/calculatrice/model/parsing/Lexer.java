@@ -1,4 +1,4 @@
-package com.arolla.jam.calculatrice;
+package com.arolla.jam.calculatrice.model.parsing;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.arolla.jam.calculatrice.infra.messaging;
+package com.arolla.jam.calculatrice.api;
 
 /**
  * Created by cafetux on 23/01/2016.

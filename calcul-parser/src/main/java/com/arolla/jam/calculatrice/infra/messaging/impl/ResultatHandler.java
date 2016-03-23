@@ -1,7 +1,7 @@
 package com.arolla.jam.calculatrice.infra.messaging.impl;
 
 import com.arolla.jam.calculatrice.Calculator;
-import com.arolla.jam.calculatrice.infra.messaging.EventHandler;
+import com.arolla.jam.calculatrice.spi.EventHandler;
 import com.arolla.jam.calculatrice.infra.messaging.Message;
 
 import java.util.regex.Matcher;
@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class ResultatHandler implements EventHandler{
 
-    public static Pattern RESULTAT_PATTERN = Pattern.compile("^\\[RESULTAT\\]\\[([a-zA-Z0-9]+)\\]\\[(\\d+)\\]$");
+    public static Pattern RESULTAT_PATTERN = Pattern.compile("^\\|RESULTAT\\|([a-zA-Z0-9]{32})\\|([ \\d]+)\\|$");
 
     private Calculator calculator;
 
@@ -23,7 +23,7 @@ public class ResultatHandler implements EventHandler{
     @Override
     public boolean accept(Message message) {
 
-        if (isResultat(message)) {
+        if (isResultat(trim(message))) {
             System.out.println("ResultatHandler.accept: "+message);
             return true;
         } else {
@@ -32,13 +32,17 @@ public class ResultatHandler implements EventHandler{
         }
     }
 
-    private boolean isResultat(Message message) {
-        return RESULTAT_PATTERN.matcher(message.getContent()).find();
+    private String trim(Message message) {
+        return message.getContent().replace(" ","");
+    }
+
+    private boolean isResultat(String messageContent) {
+        return RESULTAT_PATTERN.matcher(messageContent).find();
     }
 
     @Override
     public void handle(Message message) {
-        Matcher matcher = RESULTAT_PATTERN.matcher(message.getContent());
+        Matcher matcher = RESULTAT_PATTERN.matcher(trim(message));
         matcher.find();
         calculator.receiveResult(matcher.group(1), Integer.parseInt(matcher.group(2)));
     }

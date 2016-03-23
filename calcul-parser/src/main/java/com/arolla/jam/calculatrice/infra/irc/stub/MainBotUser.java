@@ -1,6 +1,6 @@
 package com.arolla.jam.calculatrice.infra.irc.stub;
 
-import com.arolla.jam.calculatrice.model.Operateur;
+import com.arolla.jam.calculatrice.model.operation.Operateur;
 
 import java.util.Random;
 

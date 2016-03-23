@@ -1,6 +1,6 @@
-package com.arolla.jam.calculatrice;
+package com.arolla.jam.calculatrice.model.parsing;
 
-import com.arolla.jam.calculatrice.model.*;
+import com.arolla.jam.calculatrice.model.operation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,5 +61,4 @@ public class CalculParser {
         }
         return operandeA;
     }
-
 }

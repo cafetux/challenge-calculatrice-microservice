@@ -1,4 +1,4 @@
-package com.arolla.jam.calculatrice.model;
+package com.arolla.jam.calculatrice.model.operation;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -26,8 +26,8 @@ public class Calcul implements Serializable {
      * Convention: A operateur B
      *
      * @param operateur l'operateur à utiliser entre les operateurs
-     * @param a le premier operande,se situe à gauche du signe (peut être un calcul)
-     * @param b le deuxiéme operande,se situe à droite du signe (peut être un calcul)
+     * @param a le premier operande,se situe à gauche du signe (peut être un resultOf)
+     * @param b le deuxiéme operande,se situe à droite du signe (peut être un resultOf)
      */
     public Calcul(final Operateur operateur, final Operande a, final Operande b) {
         this.id= UUID.randomUUID().toString().replace("-","");
@@ -39,8 +39,8 @@ public class Calcul implements Serializable {
      * Convention: A operateur B
      *
      * @param operateur l'operateur à utiliser entre les operateurs
-     * @param a le premier operande,se situe à gauche du signe (peut être un calcul)
-     * @param b le deuxiéme operande,se situe à droite du signe (peut être un calcul)
+     * @param a le premier operande,se situe à gauche du signe (peut être un resultOf)
+     * @param b le deuxiéme operande,se situe à droite du signe (peut être un resultOf)
      */
     public Calcul(final Operateur operateur, final int a, final String b) {
         this(operateur,new IntegerOperande(a),new FutureOperande(b));

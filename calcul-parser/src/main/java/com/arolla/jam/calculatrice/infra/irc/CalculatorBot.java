@@ -1,6 +1,10 @@
 package com.arolla.jam.calculatrice.infra.irc;
 
-import com.arolla.jam.calculatrice.infra.messaging.*;
+import com.arolla.jam.calculatrice.api.UserInterface;
+import com.arolla.jam.calculatrice.infra.messaging.EventType;
+import com.arolla.jam.calculatrice.infra.messaging.Message;
+import com.arolla.jam.calculatrice.spi.EventBus;
+import com.arolla.jam.calculatrice.spi.EventHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +12,7 @@ import java.util.List;
 /**
  * Created by cafetux on 22/01/2016.
  */
-public class CalculatorBot extends IrcBot implements EventBus,UserInterface{
+public class CalculatorBot extends IrcBot implements EventBus,UserInterface {
 
     private final String eventChannel;
     private final String userChannel;

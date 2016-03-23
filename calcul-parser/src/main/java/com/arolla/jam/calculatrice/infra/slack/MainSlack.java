@@ -1,6 +1,6 @@
 package com.arolla.jam.calculatrice.infra.slack;
 
-import com.arolla.jam.calculatrice.CalculParser;
+import com.arolla.jam.calculatrice.model.parsing.CalculParser;
 import com.arolla.jam.calculatrice.Calculator;
 import com.arolla.jam.calculatrice.infra.messaging.impl.CalculatorHandler;
 import com.arolla.jam.calculatrice.infra.messaging.impl.ResultatHandler;

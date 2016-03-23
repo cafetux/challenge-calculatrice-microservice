@@ -1,7 +1,7 @@
 package com.arolla.jam.calculatrice.infra.messaging.impl;
 
 import com.arolla.jam.calculatrice.Calculator;
-import com.arolla.jam.calculatrice.infra.messaging.EventHandler;
+import com.arolla.jam.calculatrice.spi.EventHandler;
 import com.arolla.jam.calculatrice.infra.messaging.Message;
 
 import java.util.regex.Pattern;

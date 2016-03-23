@@ -1,4 +1,4 @@
-package com.arolla.jam.calculatrice.model;
+package com.arolla.jam.calculatrice.model.operation;
 
 import java.io.Serializable;
 
