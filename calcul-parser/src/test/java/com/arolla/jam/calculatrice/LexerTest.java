@@ -1,5 +1,6 @@
 package com.arolla.jam.calculatrice;
 
+import com.arolla.jam.calculatrice.model.parsing.Lexer;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

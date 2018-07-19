@@ -1,14 +1,15 @@
 package com.arolla.jam.calculatrice;
 
-import com.arolla.jam.calculatrice.model.Calcul;
-import com.arolla.jam.calculatrice.model.IntegerOperande;
-import com.arolla.jam.calculatrice.model.Operande;
+import com.arolla.jam.calculatrice.model.operation.Calcul;
+import com.arolla.jam.calculatrice.model.operation.IntegerOperande;
+import com.arolla.jam.calculatrice.model.operation.Operande;
+import com.arolla.jam.calculatrice.model.parsing.CalculParser;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import static com.arolla.jam.calculatrice.model.Operateur.*;
+import static com.arolla.jam.calculatrice.model.operation.Operateur.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**

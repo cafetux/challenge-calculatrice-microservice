@@ -4,6 +4,7 @@ import com.arolla.jam.calculatrice.infra.messaging.impl.CalculatorHandler;
 import com.arolla.jam.calculatrice.infra.messaging.impl.ResultatHandler;
 import com.arolla.jam.calculatrice.infra.slack.JamBot;
 import com.arolla.jam.calculatrice.infra.slack.Token;
+import com.arolla.jam.calculatrice.model.parsing.CalculParser;
 import org.junit.Ignore;
 import org.junit.Test;
 
